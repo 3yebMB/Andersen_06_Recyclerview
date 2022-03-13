@@ -44,6 +44,23 @@ class ListFragment : Fragment() {
             override fun onContactDetails(contact: Contact) {
                 cardViewClickListener.onCardViewClicked(contact)
             }
+
+            val layoutManager = LinearLayoutManager(activity)
+            override fun onUserMove(contact: Contact, moveBy: Int, contactPosition: Int) {
+                contactsService.moveContact(contact, moveBy)
+                val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+                if (contactPosition == firstVisibleItemPosition ||
+                    (contactPosition == firstVisibleItemPosition + 1 && moveBy < 0)
+                ) {
+                    val v = binding.recyclerView.getChildAt(0)
+                    val offset = if (v == null) 0 else v.top - binding.recyclerView.paddingTop
+                    layoutManager.scrollToPositionWithOffset(firstVisibleItemPosition, offset)
+                }
+            }
+
+            override fun onUserDelete(contact: Contact) {
+                contactsService.deleteUser(contact)
+            }
         })
         _adapter.contacts = contactsService.getContacts()
 
@@ -61,7 +78,14 @@ class ListFragment : Fragment() {
             itemAnimator.supportsChangeAnimations = false
         }
 
+        contactsService.addListener(contactsListener)
+
         return binding.root
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        contactsService.removeListener(contactsListener)
     }
 
     private fun saveResult(contact: Contact) {

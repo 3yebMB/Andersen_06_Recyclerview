@@ -5,4 +5,8 @@
     <string name="hint_lastname_field">Surname</string>
     <string name="hint_phone_field">Phone</string>
     <string name="hint_name_field">Name</string>
+
+    <string name="move_up">Move Up</string>
+    <string name="move_down">Move Down</string>
+    <string name="remove">Remove</string>
 </resources>

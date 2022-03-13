@@ -2,7 +2,6 @@ package dev.m13d.recyclerview
 
 import android.os.Bundle
 import android.os.Parcelable
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentResultListener

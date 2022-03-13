@@ -56,6 +56,8 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/default_padding"
                 android:textSize="@dimen/name_text_size"
+                android:ellipsize="end"
+                android:maxLines="1"
                 tools:text="Name" />
 
             <TextView
@@ -64,6 +66,8 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/default_padding"
                 android:textSize="@dimen/surname_text_size"
+                android:ellipsize="end"
+                android:maxLines="1"
                 tools:text="Surname" />
 
             <TextView
@@ -72,9 +76,23 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/default_padding"
                 android:textSize="@dimen/phone_text_size"
+                android:maxLines="1"
                 tools:text="+79998877666" />
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/moreButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_more"
+            android:padding="@dimen/default_padding"
+            android:layout_marginEnd="@dimen/default_margin"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
