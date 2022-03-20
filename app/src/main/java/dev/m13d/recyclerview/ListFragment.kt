@@ -89,11 +89,12 @@ class ListFragment : Fragment() {
     }
 
     private fun saveResult(contact: Contact) {
-        list = contactsService.getContacts()
-        val foundContact = list.find { it.id == contact.id }
-        val index = list.indexOf(foundContact)
-        list[index] = contact
-        _adapter.contacts = list
+        _adapter.contacts = contactsService.getContacts().map {
+            if (it.id == contact.id)
+                it.copy(name = contact.name)
+            else
+                it
+        }
     }
 
     interface CardViewClickListener {
